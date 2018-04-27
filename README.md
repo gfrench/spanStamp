@@ -1,2 +1,1 @@
-# brief
-# brief
+# brief; everything starts out:  'brief'
