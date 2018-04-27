@@ -34,3 +34,4 @@ load=flee-mega
 lock=load / 60
 what=str(lock)
 print what + " minutes until the date that has been selected"
+print "ok"
