@@ -1,37 +1,47 @@
 #!/usr/bin/python
 import time
 import os
-import datetime
-ap=open( './review', 'r' )
-aq=ap.readline()
-ap.close()
-x=int(time.time())
-g=open( './review', 'w' )
-g.write(str(x))
-g.write('\n')
-g.write(str(x) + '\n')
-g.close()
-y=open( './review', 'a' )
-y.write(str(x) + '\n')
-with open('./review', 'rb' ) as f:
-    first = f.readline()
-    f.seek(-2, os.SEEK_END)
-    while f.read(1) != b"\n":
-        f.seek(-2, os.SEEK_CUR)
-    last = f.readline()
-l=str(aq)
-k=int(aq)
-w=int(last)
-v=int(first)
-duration = w - k
-min = duration / 60
-veh = str(min)
-print veh + " minutes since the last time you ran this instruction set"
-y.close()
-flee=1525442400
-mega=int(x)
-load=flee-mega
-lock=load / 60
-what=str(lock)
-print what + " minutes until the date that has been selected"
-print "ok"
+
+#a useful comment because ..
+with open('/CoolDirectory/thePast','rb') as aim:
+    womb = aim.readline()
+    aim.seek(-2, os.SEEK_END)
+    while aim.read(1) != b"\n":
+        aim.seek(-2, os.SEEK_CUR)
+    tomb = aim.readline()
+
+action = int(round(time.time()))
+strenf = open('/CoolDirectory/thePast', 'a')
+strenf.write(str(action) + "\n")
+strenf.close()
+
+move = int(action)
+stop = int(tomb)
+
+result = move - stop
+
+if result <= 60:
+    ext = "seconds"
+    ncc = str(result) + " " + str(ext)
+
+if result > 60:
+    aah = result / 60
+    ooh = result % 60
+    exp = "minutes"
+    ext = "seconds"
+    ncc = str(aah) + " " + str(exp) + " " + str(ooh) + " " + str(ext)
+
+if result > 3599:
+    eeh = result / 3600
+    iih = result % 3600
+    aah = iih / 60
+    ooh = iih % 60
+    exm = "hours"
+    exp = "minutes"
+    ext = "seconds"
+    ncc = str(eeh) + " " + str(exm) + " " + str(aah) + " " + str(exp) + " " + str(ooh) + " " + str(ext)
+
+erect = str(ncc)
+outro = str(erect)
+
+print "you have been busy for " + outro
