@@ -1,1 +1,1 @@
-# brief; everything starts out:  'brief'
+# how long have i been at this
