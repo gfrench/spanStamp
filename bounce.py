@@ -3,7 +3,7 @@ import time
 import os
 
 #a useful comment because ..
-with open('/CoolDirectory/thePast','rb') as aim:
+with open('./CoolDirectory/thePast','rb') as aim:
     womb = aim.readline()
     aim.seek(-2, os.SEEK_END)
     while aim.read(1) != b"\n":
@@ -11,7 +11,7 @@ with open('/CoolDirectory/thePast','rb') as aim:
     tomb = aim.readline()
 
 action = int(round(time.time()))
-strenf = open('/CoolDirectory/thePast', 'a')
+strenf = open('./CoolDirectory/thePast', 'a')
 strenf.write(str(action) + "\n")
 strenf.close()
 
