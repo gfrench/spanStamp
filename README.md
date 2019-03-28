@@ -1,1 +1,1 @@
-# how long have i been at this
+# this is a script that you can run in order to give you the amount of time that has elapsed since the time that you last ran the script.  no more, no less - and I'm certain more elegant methods exist.
