@@ -2,24 +2,17 @@
 import time
 import os
 
-#seeking improvement
+#spot1 = os.getenv("HOME") + "logs" + "/" + "past"
+spot2 = './logs/past'
 
-# relics of strangeness:  coldLofty = '/home/userlessuser/logs/past'
-spot1 = os.getenv("HOME")
-spot2 = 'logs'
-spot3 = 'past'
-spot6 = spot1 + "/" + spot2 + "/" + spot3 # no comment
-
-with open(spot6,'rb') as aim:
-    #need catch error 'file not found'
-    #also, throw an 'IF' file not found / write the file!
+with open(spot2,'rb') as aim:
     aim.seek(-2, os.SEEK_END)
     while aim.read(1) != b"\n":
         aim.seek(-2, os.SEEK_CUR)
     grip = aim.readline()
 
 action = int(round(time.time()))
-muscle = open(spot6, 'a')
+muscle = open(spot2, 'a')
 muscle.write(str(action) + "\n")
 muscle.close()
 
@@ -77,8 +70,6 @@ if timespan > 604799:
         wks = "weeks"
     if durationDays >= 2:
         dz = "days"
-    #i'm very angry, you won't like me when i'm angry
-
     seen = str(durationWeeks) + " " + str(wks) + " " + str(durationDays) + " " + str(dz) + " " + str(durationHours) + " " + str(hrs) + " " + str(durationMinutes) + " " + str(mins) + " " + str(durationSeconds) + " " + str(secs)
 
 race = str(seen)
