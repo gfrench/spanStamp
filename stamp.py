@@ -1,6 +1,5 @@
 #!/usr/bin/python
-import time
-import os
+import time, os
 
 #spot1 = os.getenv("HOME") + "logs" + "/" + "past"
 spot2 = './logs/past'
