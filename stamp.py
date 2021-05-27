@@ -1,22 +1,35 @@
 #!/usr/bin/python
-import time, os
+import time, os, sys, calendar
 
-#spot1 = os.getenv("HOME") + "logs" + "/" + "past"
-spot2 = './logs/past'
+# put the different parts of this in referenced capsules
+#spot1 = os.getenv("HOME")
+spot1 = "."
+targetdata = spot1 + "/" + 'logs' + "/" + 'past'
 
-with open(spot2,'rb') as aim:
+# this grabs the the most recently written timestamp
+with open(targetdata,'rb') as aim:
     aim.seek(-2, os.SEEK_END)
     while aim.read(1) != b"\n":
         aim.seek(-2, os.SEEK_CUR)
     grip = aim.readline()
 
+# this grabs the current timestamp
 action = int(round(time.time()))
-muscle = open(spot2, 'a')
+muscle = open(targetdata, 'a')
 muscle.write(str(action) + "\n")
 muscle.close()
 
 move = int(action)
 stop = int(grip)
+
+##################################
+try:
+    if sys.argv[1]:
+        element = sys.argv[1]
+except IndexError as problemo:
+    element = 'straight'
+    # print(problemo.args)
+##################################
 
 wks = "week"
 dz = "day"
@@ -25,7 +38,27 @@ mins = "minutes"
 secs = "seconds"
 timespan = move - stop
 
-if timespan <= 60:
+if element == "milestone":
+    if sys.argv[2]:
+        datestring = sys.argv[2]
+    #flexometer = int(datestring converted to seconds)
+    #timespan = move - flexometer
+    benefits = str(datestring)
+    yeargood = benefits[:4]
+    mossgood = benefits[4:6]
+    daysgood = benefits[6:8]
+    movement = calendar.timegm(time.strptime(yeargood + '-' + mossgood + '-' + daysgood + ' 09:00:01', '%Y-%m-%d %H:%M:%S'))
+    #movement = calendar.timegm(time.strptime('2021-06-30 17:00:01', '%Y-%m-%d %H:%M:%S'))
+    
+    flexometer = int(movement)
+    timespan = move - flexometer
+
+if timespan < 0:
+    print("You have requested information regarding a date in the future, be patient")
+    #structure = (stop * 1) + (timespan * 1)
+    near = time.strftime("%a, %d %b %Y", time.localtime(movement))
+    print("That is " + str(timespan * -1) + " seconds away and will come to pass on " + near)
+if (timespan > 1) and (timespan <= 60):
     secs = "seconds"
     seen = str(timespan) + " " + str(secs)
 
@@ -69,7 +102,11 @@ if timespan > 604799:
         wks = "weeks"
     if durationDays >= 2:
         dz = "days"
+    
     seen = str(durationWeeks) + " " + str(wks) + " " + str(durationDays) + " " + str(dz) + " " + str(durationHours) + " " + str(hrs) + " " + str(durationMinutes) + " " + str(mins) + " " + str(durationSeconds) + " " + str(secs)
 
-race = str(seen)
-print "you have been busy for " + race
+try:
+    race = str(seen)
+    print("you have been busy for " + race)
+except NameError as problemo2:
+    print("You are speculating about the future; You have not seen that timespan yet")
