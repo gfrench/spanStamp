@@ -11,7 +11,7 @@ with open(targetdata,'rb') as aim:
     aim.seek(-2, os.SEEK_END)
     while aim.read(1) != b"\n":
         aim.seek(-2, os.SEEK_CUR)
-    grip = aim.readline()
+    finder = aim.readline()
 
 # this grabs the current timestamp
 action = int(round(time.time()))
@@ -20,7 +20,7 @@ muscle.write(str(action) + "\n")
 muscle.close()
 
 move = int(action)
-stop = int(grip)
+stop = int(finder)
 
 ##################################
 try:
