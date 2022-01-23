@@ -28,7 +28,7 @@ grabYear = int(time.strftime("%Y", time.localtime(action)))
 if grabYear % 4 == 0 or grabYear % 100 == 0:
     Months = { 'Feb' : 29 }
 
-# it needs to be mentioned: 
+# it needs to be mentioned: with accuracy in mind, is any consideration being given to leap years...
 Months = { 'Jan' : 31, 'Feb' : 28, 'Mar' : 31, 'Apr' : 30, 'May' : 31, 'Jun' : 30, 'Jul' : 31, 'Aug' : 31, 'Sep' : 30, 'Oct' : 31, 'Nov' : 30, 'Dec' : 31 }
 calcYear = Months['Jan'] + Months['Feb'] + Months['Mar'] + Months['Apr'] + Months['May'] + Months['Jun'] + Months['Jul'] + Months['Aug'] + Months['Sep'] + Months['Oct'] + Months['Nov'] + Months['Dec'] 
 
