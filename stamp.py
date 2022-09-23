@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 import time, os, sys, calendar
 
-# compartmentalization
-# spot1 = os.getenv("HOME")
-spot1 = "."
+spot1 = os.getenv("HOME")
 targetdata = spot1 + "/" + 'logs' + "/" + 'past'
 
 # this grabs the the most recently written timestamp
@@ -26,15 +24,11 @@ grabMonth = time.strftime("%b", time.localtime(action))
 grabYear = int(time.strftime("%Y", time.localtime(action)))
 
 if grabYear % 4 == 0 or grabYear % 100 == 0:
-    Months = { 'Feb' : 29 }
+        Months = { 'Feb' : 29 }
 
 # it needs to be mentioned: with accuracy in mind, is any consideration being given to leap years...
 Months = { 'Jan' : 31, 'Feb' : 28, 'Mar' : 31, 'Apr' : 30, 'May' : 31, 'Jun' : 30, 'Jul' : 31, 'Aug' : 31, 'Sep' : 30, 'Oct' : 31, 'Nov' : 30, 'Dec' : 31 }
-calcYear = Months['Jan'] + Months['Feb'] + Months['Mar'] + Months['Apr'] + Months['May'] + Months['Jun'] + Months['Jul'] + Months['Aug'] + Months['Sep'] + Months['Oct'] + Months['Nov'] + Months['Dec'] 
-
-# print(calcYear) # the audience knows there is a better way to do this
-# spanMonthly = Months[grabMonth]
-# print(spanMonthly)
+calcYear = Months['Jan'] + Months['Feb'] + Months['Mar'] + Months['Apr'] + Months['May'] + Months['Jun'] + Months['Jul'] + Months['Aug'] + Months['Sep'] + Months['Oct'] + Months['Nov'] + Months['Dec']
 
 ##################################
 try:
@@ -78,14 +72,14 @@ if (timespan > 1) and (timespan <= 60):
     seen = str(timespan) + " " + str(secs)
 
 if timespan > 60:
-    durationMinutes = timespan / 60
+    durationMinutes = timespan // 60
     durationSeconds = timespan % 60
     seen = str(durationMinutes) + " " + str(mins) + " " + str(durationSeconds) + " " + str(secs)
 
 if timespan > 3599:
-    durationHours = timespan / 3600
+    durationHours = timespan // 3600
     intermediateSeconds = timespan % 3600
-    durationMinutes = intermediateSeconds / 60
+    durationMinutes = intermediateSeconds // 60
     durationSeconds = intermediateSeconds % 60
     hrs = "hours"
     mins = "minutes"
@@ -93,24 +87,24 @@ if timespan > 3599:
     seen = str(durationHours) + " " + str(hrs) + " " + str(durationMinutes) + " " + str(mins) + " " + str(durationSeconds) + " " + str(secs)
 
 if timespan > 86399:
-    durationDays = timespan / 86400
+    durationDays = timespan // 86400
     intermediateSeconds = timespan % 86400
-    durationHours = intermediateSeconds / 3600
+    durationHours = intermediateSeconds // 3600
     intermediateSecondsMin = intermediateSeconds % 3600
-    durationMinutes = intermediateSecondsMin / 60
+    durationMinutes = intermediateSecondsMin // 60
     durationSeconds = intermediateSecondsMin % 60
     if durationDays >= 2:
         dz = "days"
     seen = str(durationDays) + " " + str(dz) + " " + str(durationHours) + " " + str(hrs) + " " + str(durationMinutes) + " " + str(mins) + " " + str(durationSeconds) + " " + str(secs)
 
 if timespan > 604799:
-    durationWeeks = timespan / 604800
+    durationWeeks = timespan // 604800
     lastStandMain = timespan % 604800
-    durationDays = lastStandMain / 86400
+    durationDays = lastStandMain // 86400
     intermediateSecondsHrs = lastStandMain % 86400
-    durationHours = intermediateSecondsHrs / 3600
+    durationHours = intermediateSecondsHrs // 3600
     intermediateSecondsMinutes = intermediateSecondsHrs % 3600
-    durationMinutes = intermediateSecondsMinutes / 60
+    durationMinutes = intermediateSecondsMinutes // 60
     durationSeconds = intermediateSecondsMinutes % 60
     if durationWeeks >= 2:
         wks = "weeks"
@@ -121,15 +115,15 @@ if timespan > 604799:
 
 if timespan > 2592000:  #it is an estimate but hey ..
 
-    durationMonths = timespan / 2592000
+    durationMonths = timespan // 2592000
     intermediateWks = timespan % 2592000
-    durationWeeks = intermediateWks / 604800
+    durationWeeks = intermediateWks // 604800
     intermediateDays = intermediateWks % 604800
-    durationDays = intermediateDays / 86400
+    durationDays = intermediateDays // 86400
     intermediateSecondsHrs = intermediateDays % 86400
-    durationHours = intermediateSecondsHrs / 3600
+    durationHours = intermediateSecondsHrs // 3600
     intermediateSecondsMinutes = intermediateSecondsHrs % 3600
-    durationMinutes = intermediateSecondsMinutes / 60
+    durationMinutes = intermediateSecondsMinutes // 60
     durationSeconds = intermediateSecondsMinutes % 60
     if durationMonths >= 2:
         mos = "months"
@@ -144,17 +138,17 @@ if timespan > 31536000:
 
     intYear = Months['Jan'] + Months['Feb'] + Months['Mar'] + Months['Apr'] + Months['May'] + Months['Jun'] + Months['Jul'] + Months['Aug'] + Months['Sep'] + Months['Oct'] + Months['Nov'] + Months['Dec'] # you do know that: year = 365 would have sufficed
     calYear = intYear * 86400
-    durationYears = timespan / calYear
+    durationYears = timespan // calYear
     intermediateMonths = timespan % calYear
-    durationMonths = intermediateMonths / 2592000
+    durationMonths = intermediateMonths // 2592000
     intermediateWks = intermediateMonths % 2592000
-    durationWeeks = intermediateWks / 604800
+    durationWeeks = intermediateWks // 604800
     intermediateDays = intermediateWks % 604800
-    durationDays = intermediateDays / 86400
+    durationDays = intermediateDays // 86400
     intermediateSecondsHrs = intermediateDays % 86400
-    durationHours = intermediateSecondsHrs / 3600
+    durationHours = intermediateSecondsHrs // 3600
     intermediateSecondsMinutes = intermediateSecondsHrs % 3600
-    durationMinutes = intermediateSecondsMinutes / 60
+    durationMinutes = intermediateSecondsMinutes // 60
     durationSeconds = intermediateSecondsMinutes % 60
     if durationYears >= 2:
         yrs = "years"
